@@ -7,5 +7,5 @@
     # Разбить IDs (вместо одного огромного IN-запроса использовать пачки)
     # Убрать создание нового PDO в цикле
     # Использовать Prepared Statements
-    # Увеличить max_allowed_packet
+    # Увеличить max_allowed_packet = 16M
     # Рассмотреть InnoDB, вместо MyISAM
