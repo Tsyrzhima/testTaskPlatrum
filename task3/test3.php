@@ -10,13 +10,19 @@ public function processWebhook(array $data): void {
     }
     $message = $data['text'] ?? null;
     $fields = $data['fields'] ?? [];
+    $externalId = $data['id'] ?? null;
     if ($message === null) {
         throw new Exception('Text cannot be empty');
+    }
+    $existingDeal = $this->_getDealByExternalId($externalId);
+    if ($existingDeal !== null) {
+        return;
     }
     $this->_storeDeal(
         'Deal from webhook',
         $message,
         json_encode($fields),
+        $externalId
     );
 }
 
